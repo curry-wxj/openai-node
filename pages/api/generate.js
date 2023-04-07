@@ -31,9 +31,9 @@ export default async function(req, res) {
       {
         model: "gpt-3.5-turbo",
         // prompt: generatePrompt(animal),
-        messages: [{role: "user", content:animal}],
+        messages: [{ role: "user", content: animal }],
         temperature: 0.2,
-      },
+      }
       // {
       //   proxy: {
       //     host: "127.0.0.1",
@@ -41,8 +41,8 @@ export default async function(req, res) {
       //   },
       // }
     );
-    console.log(completion,animal)
-    res.status(200).json({ result: completion.data.choices[0].message });
+    console.log(JSON.stringify(completion.data.choices[0]), animal);
+    res.status(200).json({ result: completion.data.choices[0].content });
   } catch (error) {
     // Consider adjusting the error handling logic for your use case
     if (error.response) {
@@ -60,7 +60,7 @@ export default async function(req, res) {
 }
 
 function generatePrompt(animal) {
-  return animal
+  return animal;
   const capitalizedAnimal =
     animal[0].toUpperCase() + animal.slice(1).toLowerCase();
   return `Suggest three names for an animal that is a superhero.
