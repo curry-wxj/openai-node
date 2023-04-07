@@ -31,7 +31,7 @@ export default async function(req, res) {
       {
         model: "gpt-3.5-turbo",
         // prompt: generatePrompt(animal),
-        messages: [{role: "user", content: "Hello world"}],
+        messages: [{role: "user", content:animal}],
         temperature: 0.2,
       },
       // {
@@ -41,6 +41,7 @@ export default async function(req, res) {
       //   },
       // }
     );
+    console.log(completion,animal)
     res.status(200).json({ result: completion.data.choices[0].message });
   } catch (error) {
     // Consider adjusting the error handling logic for your use case
